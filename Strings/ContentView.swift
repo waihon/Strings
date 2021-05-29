@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    let input = "aardvark abacuses abalones"
-    let words = input.components(separatedBy: " ")
+    let input =
+      """
+      aardvark
+      abacuses
+      abalones
+      """
+    let words = input.components(separatedBy: "\n")
     return List(words, id: \.self) {
       Text($0)
     }
