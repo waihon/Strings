@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    Text("Hello, world!")
-      .padding()
+    let input = "aardvark abacuses abalones"
+    let words = input.components(separatedBy: " ")
+    return List(words, id: \.self) {
+      Text($0)
+    }
   }
 }
 
