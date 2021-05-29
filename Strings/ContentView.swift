@@ -14,13 +14,18 @@ struct ContentView: View {
       aardvark
       abacuses
       abalones
+      abcdefgh
       """
     let words = input.components(separatedBy: "\n")
     let original = "  To be, or not to be, that's the question\n  "
     let trimmed = original.trimmingCharacters(in: .whitespacesAndNewlines)
+    let checker = UITextChecker()
     return VStack {
-      List(words, id: \.self) {
-        Text($0)
+      List(words, id: \.self) { word in
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        let allGood = misspelledRange.location == NSNotFound
+        Text("\(word): \(allGood ? "correct" : "wrong")")
       }
       Form {
         Section(header: Text("Random Word")) {
