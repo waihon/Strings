@@ -16,6 +16,8 @@ struct ContentView: View {
       abalones
       """
     let words = input.components(separatedBy: "\n")
+    let original = "  To be, or not to be, that's the question\n  "
+    let trimmed = original.trimmingCharacters(in: .whitespacesAndNewlines)
     return VStack {
       List(words, id: \.self) {
         Text($0)
@@ -23,6 +25,12 @@ struct ContentView: View {
       Form {
         Section(header: Text("Random Word")) {
           Text(words.randomElement()!)
+        }
+        Section(header: Text("Original")) {
+          Text(original)
+        }
+        Section(header: Text("Trimmed")) {
+          Text(trimmed)
         }
       }
     }
