@@ -16,8 +16,15 @@ struct ContentView: View {
       abalones
       """
     let words = input.components(separatedBy: "\n")
-    return List(words, id: \.self) {
-      Text($0)
+    return VStack {
+      List(words, id: \.self) {
+        Text($0)
+      }
+      Form {
+        Section(header: Text("Random Word")) {
+          Text(words.randomElement()!)
+        }
+      }
     }
   }
 }
